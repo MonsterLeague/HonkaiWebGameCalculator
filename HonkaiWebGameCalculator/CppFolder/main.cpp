@@ -7,14 +7,31 @@
 #include<random>
 #include<chrono>
 using namespace std;
+HurtPakge hurtPakge;
+bool outputFlag;
 
 template<class T1, class T2>
-bool  BattleSimulate(T1* x, T2* y) {
+void Round(T1* x, T2* y) {
+	if (x->getMoveable()) {
+		if (outputFlag)
+			cout << x->getName() << "跳过了回合！\n";
+		x->setMoveable(0);
+		x->myRound(hurtPakge);
+		return;
+	}
+	hurtPakge.init();
+	y->emenyRound(x->myRound(hurtPakge));
+	x->setSpeed(0);
+	y->setSpeed(100);
+}
+
+template<class T1, class T2>
+bool BattleSimulate(T1* x, T2* y) {
 	while (true) {
 		if (x->getHP() <= 0) return false;
 		if (y->getHP() <= 0) return true;
-		if (x->getSpeed() >= y->getSpeed()) y->enemyRound(x->thisRound());
-		else x->enemyRound(y->thisRound());
+		if (x->getSpeed() >= y->getSpeed()) Round(x, y);
+		else Round(y, x);
 	}
 }
 
@@ -46,31 +63,35 @@ int main() {
 	char isContinue;
 	while (true) {
 		//初始化
-		HurtPakge hurtpakge;
 		TitleDisp();RoleMenu();
 		winTimes1 = 0; winTimes2 = 0;
 		cout << "			选择角色1:";
 		cin >> select1;
 		cout << "			选择角色2:";
 		cin >> select2;
+		cout << "作战模拟：1		概率模拟：0" << endl;
+		cout << "			选择模式:";
+		cin >> outputFlag;
+		hurtPakge.setIsOutput(outputFlag);
 		Role *role1 = &roles[select1 - 1];
 		Role *role2 = &roles[select2 - 1];
 		//战斗模拟
 		int n = 10000;
+		if (outputFlag) n = 1;
 		for (int i = 1;i <= n;i++) {
 			role1->init();
 			role2->init();
 			if(i%100 == 0)
 				cout << ">";
-			typeid(int);
 			if (BattleSimulate(role1, role2)) winTimes1++;
 			else winTimes2++;
 		}
-		
-		//胜场数输出
-		cout << "\n			  模拟战斗次数" << n << endl;
-		cout << "\n		      角色1的胜场数为" << winTimes1 << endl;
-		cout << "\n		      角色2的胜场数为" << winTimes2 << endl;
+		if (!outputFlag) {
+			//胜场数输出
+			cout << "\n			  模拟战斗次数" << n << endl;
+			cout << "\n		      角色1的胜场数为" << winTimes1 << endl;
+			cout << "\n		      角色2的胜场数为" << winTimes2 << endl;
+		}
 		//循环结束/继续
 		cout << "\n继续请按y，否则退出\n";
 		isContinue = _getch();

@@ -9,15 +9,16 @@ class HurtPakge {
 	bool skillable;//³ÁÄ¬±ê¼Ç
 	int burnTimes;//µãÈ¼
 	int burnHurt;//µãÈ¼ÉËº¦
+	int accuracyAffected;//ÃüÖÐÂÊ½µµÍbuff
+	int attackDebuff;//ÉËº¦ÓÀ¾Ã½µµÍbuff
+	int attackDown;//¹¥»÷Á¦ÏÂ½µbuff
+	int deffenceDown;//·ÀÓùÁ¦ÏÂ½µbuff
+	bool isOutput;
 	Role *resource;
 public:
 	HurtPakge() {}
 	HurtPakge(int phy, int ele) :phyDamage(phy), eleDamage(ele) {
-		this->attackNum = 1;
-		this->movable = 0;
-		this->skillable = 0;
-		this->burnTimes = 0;
-		this->burnHurt = 0;
+		init();
 	}
 	void init() {
 		this->phyDamage = 0;
@@ -50,6 +51,21 @@ public:
 	int getBurnHurt() {
 		return this->burnHurt;
 	}
+	int getAccuracyAffected() {
+		return this->accuracyAffected;
+	}
+	int getAttackDebuff() {
+		return this->attackDebuff;
+	}
+	int getAttackDown() {
+		return this->attackDown;
+	}
+	int getDeffenceDown() {
+		return this->deffenceDown;
+	}
+	bool getIsOutput() {
+		return this->isOutput;
+	}
 	Role* getResource() {
 		return this->resource;
 	}
@@ -63,25 +79,35 @@ public:
 	}
 	void setAttackNum(int attackNum) {
 		this->attackNum = attackNum;
-		return;
 	}
 	void setMovable(bool movable) {
 		this->movable = movable;
-		return;
 	}
 	void setSkillable(bool skillable) {
 		this->skillable = skillable;
-		return;
 	}
 	void setBurnTimes(int burnTimes) {
 		this->burnTimes = burnTimes;
-		return;
 	}
 	void setBurnHurt(int burnHurt) {
 		this->burnHurt = burnHurt;
-		return;
 	}
-	void steResource(Role* role) {
+	void setAccuracyAffected(int accuracyAffected) {
+		this->accuracyAffected = accuracyAffected;
+	}
+	void setAttackDebuff(int attackDebuff) {
+		this->attackDebuff = attackDebuff;
+	}
+	void setAttackDown(int effect) {
+		this->attackDown = effect;
+	}
+	void setDeffenceDown(int effect) {
+		this->deffenceDown = effect;
+	}
+	void setIsOutput(int isOutput) {
+		this->isOutput = isOutput;
+	}
+	void setResource(Role* role) {
 		this->resource = role;
 	}
 };

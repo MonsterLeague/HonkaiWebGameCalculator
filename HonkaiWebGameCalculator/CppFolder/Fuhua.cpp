@@ -1,39 +1,42 @@
-#include "role.h"
+#include "../HeadFolder/role.h"
+#include "../HeadFolder/HurtPakge.h"
 #include<random>
 #include<chrono>
+#include<iostream>
 using namespace std;
 
-HurtPakge Fuhua::passiveSkill(HurtPakge hurtPakge) {
-	if (this->passiveFlag) hurtPakge.setEleDamage(0);
-	if (this->passiveFlag == 0 && this->getHP() <= 0) {
-		this->setHp(1);
-		this->passiveFlag = 1;
-	}
+HurtPakge Fuhua::FisterSkill(HurtPakge& hurtPakge) {
+	hurtPakge.setEleDamage(hurtPakge.getPhyDamage());
 	return hurtPakge;
 }
 
-HurtPakge Fuhua::superSkill(HurtPakge hurtPakge) {
-	if (this->superFlag == 2) {
-		mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());//随机数生成器
+HurtPakge Fuhua::SecondSkill(HurtPakge& hurtPakge) {
+	if (getSkillable() != 0) {
+		secondFlag++;
+		setSkillable(getSkillable() - 1);
+		if (hurtPakge.getIsOutput())
+			cout << getName() << "因为沉默无法释放技能" << endl;
+		return hurtPakge;
+	}
+	if (secondFlag == 2) {
 		hurtPakge.init();
-		hurtPakge.setEleDamage((rng() % 21) + 10);
-		this->superFlag = 0;
+		hurtPakge.setAttackNum(1);
+		hurtPakge.setPhyDamage(18);
+		hurtPakge.setAccuracyAffected(-25);
+		cout << getName() << "释放技能形之笔墨，对对方造成18点伤害，并使对方命中率降低25%" << endl;
+		secondFlag = 0;
 	}
-	else this->superFlag++;
+	else
+		secondFlag++;
 	return hurtPakge;
 }
 
-void Fuhua::enemyRound(HurtPakge hurtPakge) {
-	hurtPakge = this->passiveSkill(hurtPakge);
-	int hurt = hurtPakge.getEleDamage() + (hurtPakge.getPhyDamage() - this->getDefence())*hurtPakge.getAttackNum();
-	this->getHurt(hurt);
-	this->passiveSkill(hurtPakge);
-	this->setSpeed(100);
+void Fuhua::enemyRound(HurtPakge& hurtPakge) {
+	getHurt(hurtPakge);
 }
 
-HurtPakge Fuhua::myRound() {
-	HurtPakge hurtPakge = HurtPakge(this->getAttack(), 0);
-	hurtPakge = superSkill(hurtPakge);
-	this->setSpeed(0);
-	return hurtPakge;
+HurtPakge Fuhua::myRound(HurtPakge& hurtPakge) {
+	hurtPakge = basicPakge(hurtPakge);
+	hurtPakge = SecondSkill(hurtPakge);
+	return FisterSkill(hurtPakge);
 }
