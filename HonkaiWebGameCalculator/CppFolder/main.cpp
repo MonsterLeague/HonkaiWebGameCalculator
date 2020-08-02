@@ -16,18 +16,23 @@ void Round(T1* x, T2* y) {
 		if (outputFlag)
 			cout << x->getName() << "跳过了回合！\n";
 		x->setMoveable(0);
-		x->myRound(hurtPakge);
-		return;
 	}
-	hurtPakge.init();
-	y->emenyRound(x->myRound(hurtPakge));
+	else {
+		hurtPakge.init();
+		y->emenyRound(x->myRound(hurtPakge));
+	}
 	x->setSpeed(0);
 	y->setSpeed(100);
+	x->roundEnd();
 }
 
 template<class T1, class T2>
 bool BattleSimulate(T1* x, T2* y) {
+	int round = 0;
+	hurtPakge.initRound();
 	while (true) {
+		if (round++ % 2 == 0)
+			hurtPakge.addRound();
 		if (x->getHP() <= 0) return false;
 		if (y->getHP() <= 0) return true;
 		if (x->getSpeed() >= y->getSpeed()) Round(x, y);

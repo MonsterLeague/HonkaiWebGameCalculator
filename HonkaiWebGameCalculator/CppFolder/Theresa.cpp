@@ -4,12 +4,12 @@
 #include<chrono>
 using namespace std;
 
-HurtPakge Theresa::passiveSkill(HurtPakge hurtPakge) {
+HurtPakge Theresa::FisterSkill(HurtPakge hurtPakge) {
 	hurtPakge.setEleDamage(ceil((double)hurtPakge.getEleDamage()*0.5));
 	return hurtPakge;
 }
 
-HurtPakge Theresa::superSkill(HurtPakge hurtPakge) {
+HurtPakge Theresa::SecondSkill(HurtPakge hurtPakge) {
 	mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());//随机数生成器
 	if (superFlag) {
 		int hurt = 0;
@@ -26,7 +26,7 @@ HurtPakge Theresa::superSkill(HurtPakge hurtPakge) {
 
 HurtPakge Theresa::myRound() {
 	HurtPakge hurtPakge = HurtPakge(this->getAttack(), 0);
-	HurtPakge superHurt = superSkill(hurtPakge);
+	HurtPakge superHurt = SecondSkill(hurtPakge);
 	if (!(this->getSkillable())) hurtPakge = superHurt;
 	this->setSkillable(0);
 	this->setSpeed(0);
@@ -35,7 +35,7 @@ HurtPakge Theresa::myRound() {
 }
 
 void Theresa::enemyRound(HurtPakge hurtPakge) {
-	hurtPakge = passiveSkill(hurtPakge);
+	hurtPakge = FisterSkill(hurtPakge);
 	int hurt = hurtPakge.getEleDamage() + (hurtPakge.getPhyDamage() - this->getDefence());
 	this->getHurt(hurt);
 	this->setSpeed(100);

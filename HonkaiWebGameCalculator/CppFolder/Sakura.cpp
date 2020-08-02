@@ -4,7 +4,7 @@
 #include<chrono>
 using namespace std;
 
-HurtPakge Sakura::passiveSkill(HurtPakge hurtPakge) {
+HurtPakge Sakura::FisterSkill(HurtPakge hurtPakge) {
 	mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 	unsigned int randNum = rng() % 100;
 	if (randNum < 30)
@@ -12,7 +12,7 @@ HurtPakge Sakura::passiveSkill(HurtPakge hurtPakge) {
 	return hurtPakge;
 }
 
-HurtPakge Sakura::superSkill(HurtPakge hurtPakge) {
+HurtPakge Sakura::SecondSkill(HurtPakge hurtPakge) {
 	if (superFlag == 1) {
 		hurtPakge.setEleDamage(25);
 		hurtPakge.setPhyDamage(0);
@@ -25,15 +25,15 @@ HurtPakge Sakura::superSkill(HurtPakge hurtPakge) {
 }
 
 HurtPakge Sakura::myRound() {
-	passiveSkill(HurtPakge());
+	FisterSkill(HurtPakge());
 	HurtPakge hurtPakge = HurtPakge(this->getAttack(), 0);
-	hurtPakge = superSkill(hurtPakge);
+	hurtPakge = SecondSkill(hurtPakge);
 	this->setSpeed(0);
 	return hurtPakge;
 }
 
 void Sakura::enemyRound(HurtPakge hurtPakge) {
-	hurtPakge = passiveSkill(hurtPakge);
+	hurtPakge = FisterSkill(hurtPakge);
 	int hurt = (hurtPakge.getEleDamage() + (hurtPakge.getPhyDamage() - this->getDefence()))*hurtPakge.getAttackNum();
 	this->getHurt(hurt);
 	this->setSpeed(100);

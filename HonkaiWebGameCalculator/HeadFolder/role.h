@@ -4,28 +4,51 @@
 
 class Role {
 private:
-	std::string name;
-	int attack;
-	int defence;
-	int speed;//根据速度大小判定下一回合出手方
-	int hp;
-	int maxHP;
-	int accuracy;
-	bool member; //是否是单人队伍
-	bool movable;//是否被跳过回合
-	int skillable;//被沉默几个回合
-	int attackDebuff;//伤害永久下降
-	int burnTimes;//点燃标记持续时间
-	int burnHurt;//点燃标记持续伤害
+	std::string name;		//名字
+	int attack;				//攻击
+	int defence;			//防御
+	int speed;				//根据速度大小判定下一回合出手方
+	int hp;					//血量
+	int maxHP;				//血量上限
+	int accuracy;			//命中率
+	bool member;			//是否是单人队伍
+	int movable;			//是否被跳过回合
+	int skillable;			//被沉默几个回合
+	int attackDebuff;		//伤害永久下降
+	int burnTimes;			//点燃标记持续时间
+	int burnHurt;			//点燃标记持续伤害
 public:
 	Role() { 
 		baseInit();
 	}
-	virtual HurtPakge FisterSkill(HurtPakge& hurtPakge) = 0;		//一技能
-	virtual HurtPakge SecondSkill(HurtPakge& hurtPakge) = 0;		//二技能
-	virtual void enemyRound(HurtPakge& hurtPakge) = 0;			//敌方回合收到伤害计算方法
-	virtual HurtPakge myRound(HurtPakge& hurtPakge) = 0;			//我方回合造成伤害计算方法
-	virtual void init() = 0;									//初始化角色
+	/*
+		一技能逻辑接口
+	*/
+	virtual HurtPakge FisterSkill(HurtPakge& hurtPakge) = 0;
+
+	/*
+		二技能逻辑接口
+	*/
+	virtual HurtPakge SecondSkill(HurtPakge& hurtPakge) = 0;
+
+	/*
+		对方回合时我方角色行为
+	*/
+	virtual void enemyRound(HurtPakge& hurtPakge) = 0;
+
+	/*
+		我方回合时我方角色行为
+	*/
+	virtual HurtPakge myRound(HurtPakge& hurtPakge) = 0;
+
+	/*
+		角色数值初始化
+	*/
+	virtual void init() = 0;
+
+	/*
+		基础数值初始化
+	*/
 	void baseInit() {
 		this->accuracy = 100;
 		this->maxHP = 100;
@@ -35,13 +58,43 @@ public:
 		this->burnTimes = 0;
 		this->attackDebuff = 100;
 	}
-	std::string getName();
+
+	/*
+		返回一个int范围内的随机数
+	*/
 	unsigned int getRandNum();
+
+	/*
+		返回一个基础数值伤害包
+	*/
 	HurtPakge basicPakge(HurtPakge& hurtPakge);
+
+	/*
+		返回计算伤害
+	*/
 	int getHurt(HurtPakge& hurtPakge);
+
+	/*
+		对伤害包的通常结算逻辑
+	*/
 	void cal(HurtPakge& hurtPakge);
+
+	/*
+		返回该角色是否命中
+	*/
 	bool isAccuracy();
-	void getBurnHurt();
+
+	/*
+		返回是否被沉默
+	*/
+	bool isSkillable(bool isOutput = 0);
+	
+	__declspec(deprecated) void getBurnHurt();
+
+	/*
+		回合结束时调用
+	*/
+	void roundEnd();
 
 	//increase
 	void addHP(int blood);
@@ -51,6 +104,9 @@ public:
 	void addAttackDebuff(int effect);
 	
 	//setting
+	std::string setName(std::string name) {
+		this->name = name;
+	}
 	void setAttack(int attack) {
 		this->attack = attack;
 	}
@@ -69,7 +125,7 @@ public:
 	void setMember(int member) {
 		this->member = member;
 	}
-	void setMovable(bool moveFlag) {
+	void setMovable(int moveFlag) {
 		this->movable = moveFlag;
 	}
 	void setSkillable(int skillFlag) {
@@ -83,6 +139,9 @@ public:
 		this->attackDebuff = effect;
 	}
 	//getting
+	std::string getName() {
+		return name;
+	}
 	int getAttack() {
 		return this->attack;
 	}
@@ -101,7 +160,7 @@ public:
 	int getMember() {
 		return this->member;
 	}
-	bool getMoveable() {
+	int getMoveable() {
 		return this->movable;
 	}
 	int getSkillable() {
@@ -116,6 +175,7 @@ class Kiana :public Role {
 	int superFlag;
 public:
 	Kiana() {
+		this->setName("琪亚娜");
 		this->setMember(1);
 		init();
 	}
@@ -141,6 +201,7 @@ class Mei :public Role {
 	int superFlag;
 public:
 	Mei() {
+		this->setName("芽衣");
 		this->setMember(1);
 		init();
 	}
@@ -166,6 +227,7 @@ class Bronya :public Role {
 	int superFlag;
 public:
 	Bronya() {
+		this->setName("布洛妮娅");
 		this->setMember(1);
 		init();
 	}
@@ -191,6 +253,7 @@ class Himeko :public Role {
 	int superFlag;
 public:
 	Himeko() {
+		this->setName("姬子");
 		this->setMember(1);
 		init();
 	}
@@ -216,6 +279,7 @@ class Rita :public Role {
 	int superFlag;
 public:
 	Rita() {
+		this->setName("丽塔");
 		this->setMember(1);
 		init();
 	}
@@ -241,6 +305,7 @@ class Sakura :public Role {
 	int superFlag;
 public:
 	Sakura() {
+		this->setName("八重樱");
 		this->setMember(0);
 		init();
 	}
@@ -266,6 +331,7 @@ class Raven :public Role {
 	int superFlag;
 public:
 	Raven() {
+		this->setName("渡鸦");
 		this->setMember(1);
 		init();
 	}
@@ -291,6 +357,7 @@ class Theresa :public Role {
 	int superFlag;
 public:
 	Theresa() {
+		this->setName("德莉莎");
 		this->setMember(0);
 		init();
 	}
@@ -313,9 +380,9 @@ public:
 };
 
 class Rozaliya :public Role {
-	int superFlag;
 public:
 	Rozaliya() {
+		this->setName("阿琳姐妹");
 		this->setMember(0);
 		init();
 	}
@@ -324,7 +391,6 @@ public:
 		this->setDefence(10);
 		this->setHp(100);
 		this->setSpeed(10);
-		this->superFlag = 0;
 		this->baseInit();
 	}
 
@@ -338,10 +404,9 @@ public:
 };
 
 class Seele :public Role {
-	int superFlag;
-	int passiveFlag;
 public:
 	Seele() {
+		this->setName("希儿");
 		this->setMember(1);
 		init();
 	}
@@ -350,7 +415,6 @@ public:
 		this->setDefence(13);
 		this->setHp(100);
 		this->setSpeed(26);
-		this->superFlag = 0;
 		this->baseInit();
 	}
 
@@ -364,10 +428,9 @@ public:
 };
 
 class Durandal :public Role {
-	int superFlag;
-	int passiveFlag;
 public:
 	Durandal() {
+		this->setName("幽兰戴尔");
 		this->setMember(1);
 		init();
 	}
@@ -376,7 +439,6 @@ public:
 		this->setDefence(10);
 		this->setHp(100);
 		this->setSpeed(15);
-		this->superFlag = 0;
 		this->baseInit();
 	}
 
@@ -393,7 +455,9 @@ class Fuhua :public Role {
 	int secondFlag;
 public:
 	Fuhua() {
+		this->setName("符华");
 		this->setMember(1);
+		this->secondFlag = 3;
 		init();
 	}
 	void init() {
@@ -401,7 +465,6 @@ public:
 		this->setDefence(15);
 		this->setHp(100);
 		this->setSpeed(16);
-		this->secondFlag = 0;
 		this->baseInit();
 	}
 

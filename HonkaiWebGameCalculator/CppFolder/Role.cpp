@@ -7,8 +7,17 @@
 #include <chrono>
 using namespace std;
 
-string Role::getName() {
-	return name;
+bool Role::isSkillable(bool isOutput = 0) {
+	if (skillable != 0) {
+		if (isOutput)
+			cout << getName() << "因为沉默无法释放技能" << endl;
+		return false;
+	}
+	return true;
+}
+
+void Role::roundEnd() {
+	skillable = max(0, skillable - 1);
 }
 
 HurtPakge Role::basicPakge(HurtPakge& hurtPakge) {

@@ -2,22 +2,25 @@
 #include "role.h"
 
 class HurtPakge {
-	int phyDamage;//物理伤害
-	int eleDamage;//元素伤害
-	int attackNum;//造成次数
-	bool movable;//冰冻标记
-	bool skillable;//沉默标记
-	int burnTimes;//点燃
-	int burnHurt;//点燃伤害
-	int accuracyAffected;//命中率降低buff
-	int attackDebuff;//伤害永久降低buff
-	int attackDown;//攻击力下降buff
-	int deffenceDown;//防御力下降buff
+	int round;				//回合数
+	int phyDamage;			//物理伤害
+	int eleDamage;			//元素伤害
+	int attackNum;			//造成次数
+	bool movable;			//冰冻标记
+	bool skillable;			//沉默标记
+	int burnTimes;			//点燃
+	int burnHurt;			//点燃伤害
+	int accuracyAffected;	//命中率降低buff
+	int attackDebuff;		//伤害永久降低buff
+	int attackDown;			//攻击力下降buff
+	int deffenceDown;		//防御力下降buff
+	int superSkillFlag;		//必杀技标志
 	bool isOutput;
 	Role *resource;
 public:
 	HurtPakge() {}
 	HurtPakge(int phy, int ele) :phyDamage(phy), eleDamage(ele) {
+		initRound();
 		init();
 	}
 	void init() {
@@ -28,8 +31,22 @@ public:
 		this->skillable = 0;
 		this->burnTimes = 0;
 		this->burnHurt = 0;
+		this->accuracyAffected = 0;
+		int attackDebuff = 0;
+		int attackDown = 0;
+		int deffenceDown = 0;
+		int superSkillFlag = 0;
+	}
+	int addRound() {
+		round++;
+	}
+	int initRound() {
+		round = 0;
 	}
 	//getting
+	int getRound() {
+		return this->round;
+	}
 	int getPhyDamage() {
 		return this->phyDamage;
 	}
@@ -63,6 +80,9 @@ public:
 	int getDeffenceDown() {
 		return this->deffenceDown;
 	}
+	int getSuperSkillFlag() {
+		return this->superSkillFlag;
+	}
 	bool getIsOutput() {
 		return this->isOutput;
 	}
@@ -71,6 +91,9 @@ public:
 	}
 
 	//setting
+	void setRound(int round) {
+		this->round = round;
+	}
 	void setPhyDamage(int phyDamage) {
 		this->phyDamage = phyDamage;
 	}
@@ -103,6 +126,9 @@ public:
 	}
 	void setDeffenceDown(int effect) {
 		this->deffenceDown = effect;
+	}
+	void setSuperSkillFlag(int effect) {
+		this->superSkillFlag = effect;
 	}
 	void setIsOutput(int isOutput) {
 		this->isOutput = isOutput;

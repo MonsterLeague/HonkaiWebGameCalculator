@@ -18,6 +18,22 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CppFolder\Bronya.cpp" />
+    <ClCompile Include="CppFolder\Durandal.cpp" />
+    <ClCompile Include="CppFolder\Fuhua.cpp" />
+    <ClCompile Include="CppFolder\Kiana.cpp" />
+    <ClCompile Include="CppFolder\main.cpp" />
+    <ClCompile Include="CppFolder\Role.cpp" />
+    <ClCompile Include="CppFolder\Rozaliya.cpp" />
+    <ClCompile Include="CppFolder\Sakura.cpp" />
+    <ClCompile Include="CppFolder\Seele.cpp" />
+    <ClCompile Include="CppFolder\Theresa.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="HeadFolder\HurtPakge.h" />
+    <ClInclude Include="HeadFolder\role.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{99707B26-D90A-4B51-AC19-F462E5E6895F}</ProjectGuid>
@@ -114,8 +130,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
