@@ -6,12 +6,12 @@
 #include<iostream>
 using namespace std;
 
-HurtPakge Rozaliya::FisterSkill(HurtPakge& hurtPakge) {
+HurtPakge Rozaliya::FirstSkill(HurtPakge& hurtPakge) {
 	if (superFlag == 0) {
 		superFlag = 1;
 		setHp(20);
 		if (hurtPakge.getIsOutput())
-			cout << getName() << "发动技能96度生命之水，HP回复至20！" << endl;
+			cout << getName() << "发动技能「96度生命之水」,HP回复至20！" << endl;
 	}
 	return hurtPakge;
 }
@@ -24,7 +24,7 @@ HurtPakge Rozaliya::SecondSkill(HurtPakge& hurtPakge) {
 		if (num < 50) hurtPakge.setPhyDamage(233);
 		else hurtPakge.setPhyDamage(50);
 		if(hurtPakge.getIsOutput())
-			cout << getName() << "发动技能变成星星吧，对对方造成" << hurtPakge.getPhyDamage() << "点伤害！" << endl;
+			cout << getName() << "发动技能「变成星星吧」,对对方造成" << hurtPakge.getPhyDamage() << "点伤害！" << endl;
 	}
 	else {
 		if (hurtPakge.getIsOutput())
@@ -40,5 +40,5 @@ HurtPakge Rozaliya::myRound(HurtPakge& hurtPakge) {
 
 void Rozaliya::enemyRound(HurtPakge& hurtPakge) {
 	getHurt(hurtPakge);
-	if (getHP() == 0) FisterSkill(hurtPakge);
+	if (getHP() == 0) FirstSkill(hurtPakge);
 }

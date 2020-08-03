@@ -12,7 +12,7 @@ bool outputFlag;
 
 void Round(Role* x, Role* y) {
 	hurtPakge.init();
-	hurtPakge.setResource(y);
+	hurtPakge.setEnemy(y);
 	if (x->getMoveable()) {
 		if (outputFlag)
 			cout << x->getName() << "跳过了回合！\n";

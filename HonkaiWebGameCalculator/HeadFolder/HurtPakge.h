@@ -16,7 +16,7 @@ class HurtPakge {
 	int deffenceDown;		//防御力下降buff
 	int superSkillFlag;		//必杀技标志
 	bool isOutput;
-	Role *resource;
+	Role *Enemy;
 public:
 	HurtPakge() {}
 	HurtPakge(int phy, int ele) :phyDamage(phy), eleDamage(ele) {
@@ -86,8 +86,8 @@ public:
 	bool getIsOutput() {
 		return this->isOutput;
 	}
-	Role* getResource() {
-		return this->resource;
+	Role* getEnemy() {
+		return this->Enemy;
 	}
 
 	//setting
@@ -133,7 +133,7 @@ public:
 	void setIsOutput(int isOutput) {
 		this->isOutput = isOutput;
 	}
-	void setResource(Role* role) {
-		this->resource = role;
+	void setEnemy(Role* role) {
+		this->Enemy = role;
 	}
 };

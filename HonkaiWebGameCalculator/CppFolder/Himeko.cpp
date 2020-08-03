@@ -3,8 +3,8 @@
 #include<iostream>
 using namespace std;
 
-HurtPakge Himeko::FisterSkill(HurtPakge& hurtPakge) {
-	if (firstFlag && !hurtPakge.getResource()->getMember()) {
+HurtPakge Himeko::FirstSkill(HurtPakge& hurtPakge) {
+	if (firstFlag && !hurtPakge.getEnemy()->getMember()) {
 		this->addAttackDebuff(100);
 		if (hurtPakge.getIsOutput())
 			cout << getName() << "发动技能「真爱不死」,对对方造成的伤害提高100%" << endl;
@@ -24,7 +24,7 @@ HurtPakge Himeko::SecondSkill(HurtPakge& hurtPakge) {
 }
 
 HurtPakge Himeko::myRound(HurtPakge& hurtPakge) {
-	FisterSkill(hurtPakge);
+	FirstSkill(hurtPakge);
 	SecondSkill(hurtPakge);
 	hurtPakge = basicPakge(hurtPakge);
 	return hurtPakge;

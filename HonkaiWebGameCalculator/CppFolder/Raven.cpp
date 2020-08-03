@@ -3,10 +3,10 @@
 #include<iostream>
 using namespace std;
 
-HurtPakge Raven::FisterSkill(HurtPakge& hurtPakge) {
+HurtPakge Raven::FirstSkill(HurtPakge& hurtPakge) {
 	if (firstFlag) {
 		int num = getRandNum() % 100;
-		if (hurtPakge.getResource()->getName() == "琪亚娜" || num < 25)
+		if (hurtPakge.getEnemy()->getName() == "琪亚娜" || num < 25)
 			addAttackDebuff(25);
 		if (hurtPakge.getIsOutput())
 			cout << getName() << "发动了技能「不是针对你」,对敌人的伤害提高了25%" << endl;
@@ -20,6 +20,7 @@ HurtPakge Raven::SecondSkill(HurtPakge& hurtPakge) {
 		hurtPakge.init();
 		hurtPakge.setPhyDamage(16);
 		hurtPakge.setAttackNum(7);
+		hurtPakge.setSuperSkillFlag(1);
 		if(hurtPakge.getIsOutput())
 			cout << getName() << "发动了技能「别墅小岛」,对敌人造成7次基础数值为16的伤害" << endl;
 	}
@@ -27,7 +28,7 @@ HurtPakge Raven::SecondSkill(HurtPakge& hurtPakge) {
 }
 
 HurtPakge Raven::myRound(HurtPakge& hurtPakge) {
-	FisterSkill(hurtPakge);
+	FirstSkill(hurtPakge);
 	hurtPakge = basicPakge(hurtPakge);
 	hurtPakge = SecondSkill(hurtPakge);
 	return hurtPakge;

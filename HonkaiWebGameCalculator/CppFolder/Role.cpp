@@ -22,7 +22,7 @@ void Role::roundEnd() {
 
 HurtPakge Role::basicPakge(HurtPakge& hurtPakge) {
 	hurtPakge.init();
-	hurtPakge.setResource(this);
+	hurtPakge.setEnemy(this);
 	hurtPakge.setPhyDamage(attack);
 	hurtPakge.setAttackNum(1);
 	return hurtPakge;
@@ -32,9 +32,9 @@ int Role::getHurt(HurtPakge& hurtPakge) {
 	int phyDamage = hurtPakge.getPhyDamage();
 	int eleDamage = hurtPakge.getEleDamage();
 	int attackNum = hurtPakge.getAttackNum();
-	Role* resource = hurtPakge.getResource();
+	Role* Enemy = hurtPakge.getEnemy();
 	int hurt = ceil((eleDamage + max(0, (phyDamage - this->getDefence())))
-				*(float)(resource->getAttackDebuff()/100));
+				*(float)(Enemy->getAttackDebuff()/100));
 	return hurt*attackNum;
 }
 

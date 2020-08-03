@@ -6,7 +6,7 @@
 #include<iostream>
 using namespace std;
 
-HurtPakge Durandal::FisterSkill(HurtPakge& hurtPakge) {
+HurtPakge Durandal::FirstSkill(HurtPakge& hurtPakge) {
 	if (isSkillable(hurtPakge.getIsOutput())) {
 		this->addAttack(3);
 		if(hurtPakge.getIsOutput())
@@ -19,7 +19,7 @@ HurtPakge Durandal::SecondSkill(HurtPakge& hurtPakge) {
 	if (hurtPakge.getSuperSkillFlag() > 0) {
 		int num = getRandNum() % 100;
 		if (num < 16) {
-			hurtPakge.getResource()->addHP(-30);
+			hurtPakge.getEnemy()->addHP(-30);
 			hurtPakge.init();
 			if (hurtPakge.getIsOutput())
 				cout << getName() << "发动技能「反弹！反弹无效！」，无效了对方的攻击，并给予对方30点伤害" << endl;
@@ -29,7 +29,7 @@ HurtPakge Durandal::SecondSkill(HurtPakge& hurtPakge) {
 }
 
 HurtPakge Durandal::myRound(HurtPakge& hurtPakge) {
-	FisterSkill(hurtPakge);
+	FirstSkill(hurtPakge);
 	return basicPakge(hurtPakge);
 }
 

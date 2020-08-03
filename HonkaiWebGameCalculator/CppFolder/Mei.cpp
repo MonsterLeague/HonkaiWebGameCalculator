@@ -3,7 +3,7 @@
 #include<iostream>
 using namespace std;
 
-HurtPakge Mei::FisterSkill(HurtPakge& hurtPakge) {
+HurtPakge Mei::FirstSkill(HurtPakge& hurtPakge) {
 	if (isSkillable(hurtPakge.getIsOutput())) {
 		int num = getRandNum() % 100;
 		if (num < 30) {
@@ -20,6 +20,7 @@ HurtPakge Mei::SecondSkill(HurtPakge& hurtPakge) {
 		hurtPakge.init();
 		hurtPakge.setEleDamage(3);
 		hurtPakge.setAttackNum(5);
+		hurtPakge.setSuperSkillFlag(1);
 		if (hurtPakge.getIsOutput())
 			cout << getName() << "发动了技能「雷电家的龙女仆」,召唤俱利伽罗对对方造成5次3点无视防御的元素攻击" << endl;
 	}
@@ -29,7 +30,7 @@ HurtPakge Mei::SecondSkill(HurtPakge& hurtPakge) {
 HurtPakge Mei::myRound(HurtPakge& hurtPakge) {
 	hurtPakge = basicPakge(hurtPakge);
 	hurtPakge = SecondSkill(hurtPakge);
-	hurtPakge = FisterSkill(hurtPakge);
+	hurtPakge = FirstSkill(hurtPakge);
 	return hurtPakge;
 }
 

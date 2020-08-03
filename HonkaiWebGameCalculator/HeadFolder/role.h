@@ -24,7 +24,7 @@ public:
 	/*
 		Ò»¼¼ÄÜÂß¼­½Ó¿Ú
 	*/
-	virtual HurtPakge FisterSkill(HurtPakge& hurtPakge) = 0;
+	virtual HurtPakge FirstSkill(HurtPakge& hurtPakge) = 0;
 
 	/*
 		¶þ¼¼ÄÜÂß¼­½Ó¿Ú
@@ -184,11 +184,11 @@ public:
 		this->setDefence(11);
 		this->setHp(100);
 		this->setSpeed(23);
-		this->firstFlag = 0;
+		this->firstFlag = 2;
 		this->baseInit();
 	}
 
-	HurtPakge FisterSkill(HurtPakge& hurtPakge);
+	HurtPakge FirstSkill(HurtPakge& hurtPakge);
 
 	HurtPakge SecondSkill(HurtPakge& hurtPakge);
 
@@ -210,11 +210,11 @@ public:
 		this->setDefence(12);
 		this->setHp(100);
 		this->setSpeed(30);
-		this->secondFlag = 0;
+		this->secondFlag = 2;
 		this->baseInit();
 	}
 
-	HurtPakge FisterSkill(HurtPakge& hurtPakge);
+	HurtPakge FirstSkill(HurtPakge& hurtPakge);
 
 	HurtPakge SecondSkill(HurtPakge& hurtPakge);
 
@@ -224,7 +224,8 @@ public:
 };
 
 class Bronya :public Role {
-	int superFlag;
+	Role* firstFLag;
+	int secondFlag;
 public:
 	Bronya() {
 		this->setName("²¼ÂåÄÝæ«");
@@ -236,11 +237,12 @@ public:
 		this->setDefence(10);
 		this->setHp(100);
 		this->setSpeed(20);
-		this->superFlag = 0;
+		this->firstFLag = NULL;
+		this->secondFlag = 3;
 		this->baseInit();
 	}
 
-	HurtPakge FisterSkill(HurtPakge& hurtPakge);
+	HurtPakge FirstSkill(HurtPakge& hurtPakge);
 
 	HurtPakge SecondSkill(HurtPakge& hurtPakge);
 
@@ -268,7 +270,7 @@ public:
 		this->baseInit();
 	}
 
-	HurtPakge FisterSkill(HurtPakge& hurtPakge);
+	HurtPakge FirstSkill(HurtPakge& hurtPakge);
 
 	HurtPakge SecondSkill(HurtPakge& hurtPakge);
 
@@ -290,11 +292,11 @@ public:
 		this->setDefence(11);
 		this->setHp(100);
 		this->setSpeed(17);
-		this->superFlag = 0;
+		this->superFlag = 4;
 		this->baseInit();
 	}
 
-	HurtPakge FisterSkill(HurtPakge& hurtPakge);
+	HurtPakge FirstSkill(HurtPakge& hurtPakge);
 
 	HurtPakge SecondSkill(HurtPakge& hurtPakge);
 
@@ -316,11 +318,11 @@ public:
 		this->setDefence(9);
 		this->setHp(100);
 		this->setSpeed(18);
-		this->superFlag = 0;
+		this->superFlag = 2;
 		this->baseInit();
 	}
 
-	HurtPakge FisterSkill(HurtPakge& hurtPakge);
+	HurtPakge FirstSkill(HurtPakge& hurtPakge);
 
 	HurtPakge SecondSkill(HurtPakge& hurtPakge);
 
@@ -348,7 +350,7 @@ public:
 		this->baseInit();
 	}
 
-	HurtPakge FisterSkill(HurtPakge& hurtPakge);
+	HurtPakge FirstSkill(HurtPakge& hurtPakge);
 
 	HurtPakge SecondSkill(HurtPakge& hurtPakge);
 
@@ -370,11 +372,11 @@ public:
 		this->setDefence(12);
 		this->setHp(100);
 		this->setSpeed(22);
-		this->superFlag = 0;
+		this->superFlag = 3;
 		this->baseInit();
 	}
 
-	HurtPakge FisterSkill(HurtPakge& hurtPakge);
+	HurtPakge FirstSkill(HurtPakge& hurtPakge);
 
 	HurtPakge SecondSkill(HurtPakge& hurtPakge);
 
@@ -384,6 +386,7 @@ public:
 };
 
 class Rozaliya :public Role {
+	int superFlag;
 public:
 	Rozaliya() {
 		this->setName("°¢ÁÕ½ãÃÃ");
@@ -395,10 +398,11 @@ public:
 		this->setDefence(10);
 		this->setHp(100);
 		this->setSpeed(10);
+		this->superFlag = 0;
 		this->baseInit();
 	}
 
-	HurtPakge FisterSkill(HurtPakge& hurtPakge);
+	HurtPakge FirstSkill(HurtPakge& hurtPakge);
 
 	HurtPakge SecondSkill(HurtPakge& hurtPakge);
 
@@ -408,6 +412,7 @@ public:
 };
 
 class Seele :public Role {
+	int firstFlag;
 public:
 	Seele() {
 		this->setName("Ï£¶ù");
@@ -419,10 +424,11 @@ public:
 		this->setDefence(13);
 		this->setHp(100);
 		this->setSpeed(26);
+		this->firstFlag = 0;
 		this->baseInit();
 	}
 
-	HurtPakge FisterSkill(HurtPakge& hurtPakge);
+	HurtPakge FirstSkill(HurtPakge& hurtPakge);
 
 	HurtPakge SecondSkill(HurtPakge& hurtPakge);
 
@@ -435,7 +441,7 @@ class Durandal :public Role {
 public:
 	Durandal() {
 		this->setName("ÓÄÀ¼´÷¶û");
-		this->setMember(1);
+		this->setMember(0);
 		init();
 	}
 	void init() {
@@ -446,7 +452,7 @@ public:
 		this->baseInit();
 	}
 
-	HurtPakge FisterSkill(HurtPakge& hurtPakge);
+	HurtPakge FirstSkill(HurtPakge& hurtPakge);
 
 	HurtPakge SecondSkill(HurtPakge& hurtPakge);
 
@@ -456,6 +462,7 @@ public:
 };
 
 class Fuhua :public Role {
+	int firstFlag;
 	int secondFlag;
 public:
 	Fuhua() {
@@ -469,10 +476,12 @@ public:
 		this->setDefence(15);
 		this->setHp(100);
 		this->setSpeed(16);
+		this->firstFlag = 1;
+		this->secondFlag = 3;
 		this->baseInit();
 	}
 
-	HurtPakge FisterSkill(HurtPakge& hurtPakge);
+	HurtPakge FirstSkill(HurtPakge& hurtPakge);
 
 	HurtPakge SecondSkill(HurtPakge& hurtPakge);
 

@@ -3,12 +3,13 @@
 #include<iostream>
 using namespace std;
 
-HurtPakge Kiana::FisterSkill(HurtPakge& hurtPakge) {
+HurtPakge Kiana::FirstSkill(HurtPakge& hurtPakge) {
 	if (isSkillable(hurtPakge.getIsOutput()) && hurtPakge.getRound() % firstFlag == 0) {
-		int def = hurtPakge.getResource()->getDefence();
+		int def = hurtPakge.getEnemy()->getDefence();
 		this->addAttack(def * 2);
 		hurtPakge = basicPakge(hurtPakge);
 		this->addAttack(-(def * 2));
+		hurtPakge.setSuperSkillFlag(1);
 		if (hurtPakge.getIsOutput())
 			cout << getName() << "发动了技能「吃我一矛！」,本回合攻击力上升两倍对方的防御值" << endl;
 		SecondSkill(hurtPakge);
@@ -30,7 +31,7 @@ HurtPakge Kiana::SecondSkill(HurtPakge& hurtPakge) {
 }
 
 HurtPakge Kiana::myRound(HurtPakge& hurtPakge) {
-	hurtPakge = FisterSkill(hurtPakge);
+	hurtPakge = FirstSkill(hurtPakge);
 	return hurtPakge;
 }
 
