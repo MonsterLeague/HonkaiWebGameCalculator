@@ -7,7 +7,7 @@
 #include <chrono>
 using namespace std;
 
-bool Role::isSkillable(bool isOutput = 0) {
+bool Role::isSkillable(bool isOutput) {
 	if (skillable != 0) {
 		if (isOutput)
 			cout << getName() << "因为沉默无法释放技能" << endl;
@@ -69,7 +69,7 @@ void Role::cal(HurtPakge& hurtPakge) {
 			cout << getName() << "的攻击力增加了" << hurtPakge.getAttackDown() << "点" << endl;
 	}
 	if (hurtPakge.getDeffenceDown()) {
-		addAttack(hurtPakge.getDeffenceDown());
+		addDefence(hurtPakge.getDeffenceDown());
 		if (hurtPakge.getIsOutput())
 			cout << getName() << "的防御力增加了" << hurtPakge.getDeffenceDown() << "点" << endl;
 	}

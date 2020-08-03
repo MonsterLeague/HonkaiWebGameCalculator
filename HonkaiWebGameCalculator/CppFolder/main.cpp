@@ -8,6 +8,7 @@
 #include<chrono>
 using namespace std;
 HurtPakge hurtPakge;
+vector<Role*> roles;
 bool outputFlag;
 
 void Round(Role* x, Role* y) {
@@ -49,18 +50,23 @@ void TitleDisp() {
 	cout << endl;
 }
 void RoleMenu() {
-	roles.push_back(Theresa());
-	roles.push_back(Bronya());
-	roles.push_back(Fuhua());
-	roles.push_back(Rozaliya());
-	roles.push_back(Sakura());
-	roles.push_back(Seele());
-	cout << "µÂÀöÉ¯£º1	²¼ÂåÄÝæ«£º2	·û»ª£º3		ÂÞÈøÀòæ«£º4	\n"
-			"Ó£Á«£º5		Ï£¶ù£º6	\n";
+	roles.push_back(new Kiana());
+	roles.push_back(new Mei());
+	roles.push_back(new Bronya());
+	roles.push_back(new Himeko());
+	roles.push_back(new Rita());
+	roles.push_back(new Sakura());
+	roles.push_back(new Raven());
+	roles.push_back(new Theresa());
+	roles.push_back(new Rozaliya());
+	roles.push_back(new Seele());
+	roles.push_back(new Durandal());
+	roles.push_back(new Fuhua());
+	cout << "ç÷ÑÇÄÈ£º1		Ñ¿ÒÂ£º2		²¼ÂåÄÝæ«£º3		¼§×Ó£º4"
+			"ÀöËþ£º5			Ó£Á«£º6		¶ÉÑ»£º7			µÂÀöÉ¯£º8"
+			"ÂÞÈøÀòæ«£º9		Ï£¶ù£º10		ÓÄÀ¼´÷¶û£º11		·û»ª£º12";
 	cout << endl;
 }
-
-vector<Role> roles;
 
 int main() {
 	int winTimes1, winTimes2;
@@ -78,8 +84,8 @@ int main() {
 		cout << "			Ñ¡ÔñÄ£Ê½:";
 		cin >> outputFlag;
 		hurtPakge.setIsOutput(outputFlag);
-		Role *role1 = &roles[select1 - 1];
-		Role *role2 = &roles[select2 - 1];
+		Role *role1 = roles[select1 - 1];
+		Role *role2 = roles[select2 - 1];
 		//Õ½¶·Ä£Äâ
 		int n = 10000;
 		if (outputFlag) n = 1;

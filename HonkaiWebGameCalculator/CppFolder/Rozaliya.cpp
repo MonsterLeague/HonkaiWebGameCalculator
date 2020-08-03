@@ -39,6 +39,6 @@ HurtPakge Rozaliya::myRound(HurtPakge& hurtPakge) {
 }
 
 void Rozaliya::enemyRound(HurtPakge& hurtPakge) {
-	getHurt(hurtPakge);
+	cal(hurtPakge);
 	if (getHP() == 0) FirstSkill(hurtPakge);
 }

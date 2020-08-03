@@ -87,7 +87,7 @@ public:
 	/*
 		·µ»ØÊÇ·ñ±»³ÁÄ¬
 	*/
-	bool isSkillable(bool isOutput = 0);
+	bool isSkillable(bool isOutput);
 	
 	__declspec(deprecated) void getBurnHurt();
 
@@ -104,7 +104,7 @@ public:
 	void addAttackDebuff(int effect);
 	
 	//setting
-	std::string setName(std::string name) {
+	void setName(std::string name) {
 		this->name = name;
 	}
 	void setAttack(int attack) {
@@ -280,7 +280,7 @@ public:
 };
 
 class Rita :public Role {
-	int superFlag;
+	int secondFlag;
 	bool debuffFlag;
 public:
 	Rita() {
@@ -293,7 +293,7 @@ public:
 		this->setDefence(11);
 		this->setHp(100);
 		this->setSpeed(17);
-		this->superFlag = 4;
+		this->secondFlag = 4;
 		this->baseInit();
 		this->debuffFlag=false;
 	}

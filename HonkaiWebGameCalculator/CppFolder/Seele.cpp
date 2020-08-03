@@ -45,5 +45,5 @@ HurtPakge Seele::myRound(HurtPakge& hurtPakge) {
 }
 
 void Seele::enemyRound(HurtPakge& hurtPakge) {
-	getHurt(hurtPakge);
+	cal(hurtPakge);
 }

@@ -1,5 +1,6 @@
 #pragma once
-#include "role.h"
+
+class Role;
 
 class HurtPakge {
 	int round;				//»ØºÏÊý
@@ -32,15 +33,15 @@ public:
 		this->burnTimes = 0;
 		this->burnHurt = 0;
 		this->accuracyAffected = 0;
-		int attackDebuff = 0;
-		int attackDown = 0;
-		int deffenceDown = 0;
-		int superSkillFlag = 0;
+		this->attackDebuff = 0;
+		this->attackDown = 0;
+		this->deffenceDown = 0;
+		this->superSkillFlag = 0;
 	}
-	int addRound() {
+	void addRound() {
 		round++;
 	}
-	int initRound() {
+	void initRound() {
 		round = 0;
 	}
 	//getting

@@ -8,7 +8,7 @@ HurtPakge Sakura::FirstSkill(HurtPakge& hurtPakge) {
 		if (t <= 5 && t >= 3) {
 			addHP(25);
 			if (hurtPakge.getIsOutput())
-				cout << getName << "发动了技能「八重樱的饭团」,卡莲吃下了混着八重樱妹汁的饭团,hp上升了!" << endl;
+				cout << getName() << "发动了技能「八重樱的饭团」,卡莲吃下了混着八重樱妹汁的饭团,hp上升了!" << endl;
 		}
 	}
 	return hurtPakge;
@@ -20,7 +20,7 @@ HurtPakge Sakura::SecondSkill(HurtPakge& hurtPakge) {
 		hurtPakge.setEleDamage(25);
 		hurtPakge.setSuperSkillFlag(1);
 		if(hurtPakge.getIsOutput())
-			cout << getName << "发动了技能「卡莲的饭团」,巨大的饭团对敌人造成了成吨的伤害!" << endl;
+			cout << getName() << "发动了技能「卡莲的饭团」,巨大的饭团对敌人造成了成吨的伤害!" << endl;
 	}
 	return hurtPakge;
 }
@@ -32,5 +32,5 @@ HurtPakge Sakura::myRound(HurtPakge& hurtPakge) {
 }
 
 void Sakura::enemyRound(HurtPakge& hurtPakge) {
-	getHurt(hurtPakge);
+	cal(hurtPakge);
 }

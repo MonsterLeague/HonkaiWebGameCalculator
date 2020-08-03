@@ -54,6 +54,9 @@
     <ClCompile Include="CppFolder\Himeko.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="CppFolder\Rita.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HeadFolder\HurtPakge.h">
