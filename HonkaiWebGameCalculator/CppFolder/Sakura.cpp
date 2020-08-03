@@ -1,40 +1,35 @@
-#include "role.h"
+#include "../HeadFolder/Role.h"
 #include <cmath>
 #include<random>
 #include<chrono>
 using namespace std;
 
-HurtPakge Sakura::FisterSkill(HurtPakge hurtPakge) {
-	mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
-	unsigned int randNum = rng() % 100;
-	if (randNum < 30)
-		setHp(getHP() + 25);
-	return hurtPakge;
-}
-
-HurtPakge Sakura::SecondSkill(HurtPakge hurtPakge) {
-	if (superFlag == 1) {
-		hurtPakge.setEleDamage(25);
-		hurtPakge.setPhyDamage(0);
-		hurtPakge.setAttackNum(1);
-		superFlag = 0;
-		this->setMovable(1);
+HurtPakge Sakura::FisterSkill(HurtPakge& hurtPakge) {
+	mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());//随机数生成器
+	if (isSkillable(hurtPakge.getIsOutput())) {
+		int t = rng() % 10;
+		if (t <= 5 && t >= 3)
+			addHP(25);
 	}
-	else superFlag++;
+	else;
 	return hurtPakge;
 }
 
-HurtPakge Sakura::myRound() {
-	FisterSkill(HurtPakge());
-	HurtPakge hurtPakge = HurtPakge(this->getAttack(), 0);
+HurtPakge Sakura::SecondSkill(HurtPakge& hurtPakge) {
+	if (isSkillable(hurtPakge.getIsOutput()) && 0 == hurtPakge.getRound() % superFlag) {
+		hurtPakge.init();
+		hurtPakge.setEleDamage(25);
+	}
+	else;
+	return hurtPakge;
+}
+
+HurtPakge Sakura::myRound(HurtPakge& hurtPakge) {
+	hurtPakge = basicPakge(hurtPakge);
 	hurtPakge = SecondSkill(hurtPakge);
-	this->setSpeed(0);
-	return hurtPakge;
+	return FisterSkill(hurtPakge);
 }
 
-void Sakura::enemyRound(HurtPakge hurtPakge) {
-	hurtPakge = FisterSkill(hurtPakge);
-	int hurt = (hurtPakge.getEleDamage() + (hurtPakge.getPhyDamage() - this->getDefence()))*hurtPakge.getAttackNum();
-	this->getHurt(hurt);
-	this->setSpeed(100);
+void Sakura::enemyRound(HurtPakge& hurtPakge) {
+	getHurt(hurtPakge);
 }

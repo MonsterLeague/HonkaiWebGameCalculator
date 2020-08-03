@@ -1,4 +1,4 @@
-#include "../HeadFolder/role.h"
+#include "../HeadFolder/Role.h"
 #include "../HeadFolder/HurtPakge.h"
 #include <cmath>
 #include<random>
@@ -17,7 +17,7 @@ HurtPakge Rozaliya::FisterSkill(HurtPakge& hurtPakge) {
 }
 
 HurtPakge Rozaliya::SecondSkill(HurtPakge& hurtPakge) {
-	if (superFlag == 1) {
+	if (isSkillable(hurtPakge.getIsOutput()) && superFlag == 1) {
 		superFlag = 2;
 		hurtPakge.init();
 		int num = getRandNum() % 100;
