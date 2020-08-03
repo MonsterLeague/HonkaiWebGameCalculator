@@ -281,6 +281,7 @@ public:
 
 class Rita :public Role {
 	int superFlag;
+	bool debuffFlag;
 public:
 	Rita() {
 		this->setName("ÀöËþ");
@@ -294,6 +295,7 @@ public:
 		this->setSpeed(17);
 		this->superFlag = 4;
 		this->baseInit();
+		this->debuffFlag=false;
 	}
 
 	HurtPakge FirstSkill(HurtPakge& hurtPakge);
