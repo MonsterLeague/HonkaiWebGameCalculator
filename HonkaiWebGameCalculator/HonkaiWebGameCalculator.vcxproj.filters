@@ -45,12 +45,21 @@
     <ClCompile Include="CppFolder\Durandal.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="CppFolder\Mei.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CppFolder\Raven.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CppFolder\Himeko.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="HeadFolder\role.h">
+    <ClInclude Include="HeadFolder\HurtPakge.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="HeadFolder\HurtPakge.h">
+    <ClInclude Include="HeadFolder\Role.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

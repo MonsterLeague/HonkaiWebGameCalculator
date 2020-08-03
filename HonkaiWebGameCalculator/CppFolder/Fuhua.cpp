@@ -22,7 +22,7 @@ HurtPakge Fuhua::SecondSkill(HurtPakge& hurtPakge) {
 }
 
 void Fuhua::enemyRound(HurtPakge& hurtPakge) {
-	getHurt(hurtPakge);
+	cal(hurtPakge);
 }
 
 HurtPakge Fuhua::myRound(HurtPakge& hurtPakge) {

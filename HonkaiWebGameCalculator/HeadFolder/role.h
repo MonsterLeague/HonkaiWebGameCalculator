@@ -172,7 +172,7 @@ public:
 };
 
 class Kiana :public Role {
-	int superFlag;
+	int firstFlag;
 public:
 	Kiana() {
 		this->setName("ç÷ÑÇÄÈ");
@@ -184,7 +184,7 @@ public:
 		this->setDefence(11);
 		this->setHp(100);
 		this->setSpeed(23);
-		this->superFlag = 0;
+		this->firstFlag = 0;
 		this->baseInit();
 	}
 
@@ -198,7 +198,7 @@ public:
 };
 
 class Mei :public Role {
-	int superFlag;
+	int secondFlag;
 public:
 	Mei() {
 		this->setName("Ñ¿ÒÂ");
@@ -210,7 +210,7 @@ public:
 		this->setDefence(12);
 		this->setHp(100);
 		this->setSpeed(30);
-		this->superFlag = 0;
+		this->secondFlag = 0;
 		this->baseInit();
 	}
 
@@ -250,7 +250,8 @@ public:
 };
 
 class Himeko :public Role {
-	int superFlag;
+	int firstFlag;
+	int secondFlag;
 public:
 	Himeko() {
 		this->setName("¼§×Ó");
@@ -262,7 +263,8 @@ public:
 		this->setDefence(9);
 		this->setHp(100);
 		this->setSpeed(12);
-		this->superFlag = 0;
+		this->firstFlag = 1;
+		this->secondFlag = 2;
 		this->baseInit();
 	}
 
@@ -328,7 +330,8 @@ public:
 };
 
 class Raven :public Role {
-	int superFlag;
+	int firstFlag;
+	int secondFlag;
 public:
 	Raven() {
 		this->setName("¶ÉÑ»");
@@ -340,7 +343,8 @@ public:
 		this->setDefence(14);
 		this->setHp(100);
 		this->setSpeed(14);
-		this->superFlag = 0;
+		this->firstFlag = 1;
+		this->secondFlag = 3;
 		this->baseInit();
 	}
 

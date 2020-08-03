@@ -22,8 +22,11 @@
     <ClCompile Include="CppFolder\Bronya.cpp" />
     <ClCompile Include="CppFolder\Durandal.cpp" />
     <ClCompile Include="CppFolder\Fuhua.cpp" />
+    <ClCompile Include="CppFolder\Himeko.cpp" />
     <ClCompile Include="CppFolder\Kiana.cpp" />
     <ClCompile Include="CppFolder\main.cpp" />
+    <ClCompile Include="CppFolder\Mei.cpp" />
+    <ClCompile Include="CppFolder\Raven.cpp" />
     <ClCompile Include="CppFolder\Role.cpp" />
     <ClCompile Include="CppFolder\Rozaliya.cpp" />
     <ClCompile Include="CppFolder\Sakura.cpp" />
@@ -32,7 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HeadFolder\HurtPakge.h" />
-    <ClInclude Include="HeadFolder\role.h" />
+    <ClInclude Include="HeadFolder\Role.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

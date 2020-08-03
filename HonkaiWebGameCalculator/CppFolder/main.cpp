@@ -10,24 +10,24 @@ using namespace std;
 HurtPakge hurtPakge;
 bool outputFlag;
 
-template<class T1, class T2>
-void Round(T1* x, T2* y) {
+void Round(Role* x, Role* y) {
+	hurtPakge.init();
+	hurtPakge.setResource(y);
 	if (x->getMoveable()) {
 		if (outputFlag)
 			cout << x->getName() << "跳过了回合！\n";
-		x->setMoveable(0);
+		x->setMovable(0);
 	}
 	else {
-		hurtPakge.init();
-		y->emenyRound(x->myRound(hurtPakge));
+		hurtPakge = x->myRound(hurtPakge);
+		y->enemyRound(hurtPakge);
 	}
 	x->setSpeed(0);
 	y->setSpeed(100);
 	x->roundEnd();
 }
 
-template<class T1, class T2>
-bool BattleSimulate(T1* x, T2* y) {
+bool BattleSimulate(Role* x, Role* y) {
 	int round = 0;
 	hurtPakge.initRound();
 	while (true) {
