@@ -21,6 +21,7 @@ HurtPakge Durandal::SecondSkill(HurtPakge& hurtPakge) {
 		if (num < 16) {
 			hurtPakge.getEnemy()->addHP(-30);
 			hurtPakge.init();
+			hurtPakge.setPhyDamage(-1);
 			if (hurtPakge.getIsOutput())
 				cout << getName() << "发动技能「反弹！反弹无效！」，无效了对方的攻击，并给予对方30点伤害" << endl;
 		}
@@ -35,6 +36,8 @@ HurtPakge Durandal::myRound(HurtPakge& hurtPakge) {
 
 void Durandal::enemyRound(HurtPakge& hurtPakge) {
 	SecondSkill(hurtPakge);
-	if (getHurt(hurtPakge) != 0)
+	if (getHurt(hurtPakge) != -1)
 		cal(hurtPakge);
+	else
+		hurtPakge.init();
 }

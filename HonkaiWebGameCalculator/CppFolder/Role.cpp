@@ -33,17 +33,26 @@ int Role::getHurt(HurtPakge& hurtPakge) {
 	int eleDamage = hurtPakge.getEleDamage();
 	int attackNum = hurtPakge.getAttackNum();
 	Role* Enemy = hurtPakge.getEnemy();
-	int hurt = ceil((eleDamage + max(0, (phyDamage - this->getDefence())))
-				*(float)(Enemy->getAttackDebuff()/100.0));
-	return hurt*attackNum;
+	int hurt = 0;
+	for (int i = 0;i < attackNum;i++) {
+		if(Enemy->isAccuracy())
+			hurt += ceil((eleDamage + max(0, (phyDamage - this->getDefence())))
+						*(float)(Enemy->getAttackDebuff()/100.0));
+	}
+	return hurt;
 }
 
 void Role::cal(HurtPakge& hurtPakge) {
 	int hurt = getHurt(hurtPakge);
 	this->hp = std::max(0, this->hp - hurt);
-	if(hurtPakge.getIsOutput()) 
-		cout << getName() << "受到了" << hurt << "点伤害！目前的HP为" << hp << endl;
-	if (hurtPakge.getSkillable() == 1) {
+	if (hurtPakge.getIsOutput()) {
+		if(hurt != 0)
+			cout << hurtPakge.getEnemy()->getName() << "进行攻击，" << 
+				getName() << "受到了" << hurt << "点伤害！目前的HP为" << hp << endl;
+		else
+			cout << getName()<< "闪避了来自" << hurtPakge.getEnemy()->getName() << "的攻击" << endl;
+	}
+	if (hurtPakge.getSkillable() >= 1) {
 		setSkillable(hurtPakge.getSkillable());
 		if (hurtPakge.getIsOutput()) 
 			cout << getName() << "被沉默了！" << endl;

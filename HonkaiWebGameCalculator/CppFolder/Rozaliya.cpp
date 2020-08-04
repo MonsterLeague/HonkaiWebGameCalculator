@@ -21,6 +21,7 @@ HurtPakge Rozaliya::SecondSkill(HurtPakge& hurtPakge) {
 		superFlag = 2;
 		hurtPakge.init();
 		int num = getRandNum() % 100;
+		hurtPakge.setSuperSkillFlag(1);
 		if (num < 50) hurtPakge.setPhyDamage(233);
 		else hurtPakge.setPhyDamage(50);
 		if(hurtPakge.getIsOutput())
