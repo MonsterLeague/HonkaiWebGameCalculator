@@ -34,7 +34,7 @@ int Role::getHurt(HurtPakge& hurtPakge) {
 	int attackNum = hurtPakge.getAttackNum();
 	Role* Enemy = hurtPakge.getEnemy();
 	int hurt = ceil((eleDamage + max(0, (phyDamage - this->getDefence())))
-				*(float)(Enemy->getAttackDebuff()/100));
+				*(float)(Enemy->getAttackDebuff()/100.0));
 	return hurt*attackNum;
 }
 

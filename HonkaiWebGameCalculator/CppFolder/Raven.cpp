@@ -6,10 +6,12 @@ using namespace std;
 HurtPakge Raven::FirstSkill(HurtPakge& hurtPakge) {
 	if (firstFlag) {
 		int num = getRandNum() % 100;
-		if (hurtPakge.getEnemy()->getName() == "琪亚娜" || num < 25)
+		if (hurtPakge.getEnemy()->getName() == "琪亚娜" || num < 25) {
 			addAttackDebuff(25);
-		if (hurtPakge.getIsOutput())
-			cout << getName() << "发动了技能「不是针对你」,对敌人的伤害提高了25%" << endl;
+			if (hurtPakge.getIsOutput())
+				cout << getName() << "发动了技能「不是针对你」,对敌人的伤害提高了25%" << endl;
+		}
+			
 	}
 	firstFlag = 0;
 	return hurtPakge;

@@ -14,6 +14,8 @@ bool outputFlag;
 void Round(Role* x, Role* y) {
 	hurtPakge.init();
 	hurtPakge.setEnemy(y);
+	if (outputFlag)
+		cout << "µÚ" << hurtPakge.getRound() << "»ØºÏ" << endl;
 	if (x->getMoveable()) {
 		if (outputFlag)
 			cout << x->getName() << "Ìø¹ýÁË»ØºÏ£¡\n";
@@ -62,9 +64,9 @@ void RoleMenu() {
 	roles.push_back(new Seele());
 	roles.push_back(new Durandal());
 	roles.push_back(new Fuhua());
-	cout << "ç÷ÑÇÄÈ£º1		Ñ¿ÒÂ£º2		²¼ÂåÄÝæ«£º3		¼§×Ó£º4"
-			"ÀöËþ£º5			Ó£Á«£º6		¶ÉÑ»£º7			µÂÀöÉ¯£º8"
-			"ÂÞÈøÀòæ«£º9		Ï£¶ù£º10		ÓÄÀ¼´÷¶û£º11		·û»ª£º12";
+	cout << "ç÷ÑÇÄÈ£º1		Ñ¿ÒÂ£º2		²¼ÂåÄÝæ«£º3		¼§×Ó£º4\n"
+			"ÀöËþ£º5			Ó£Á«£º6		¶ÉÑ»£º7			µÂÀöÉ¯£º8\n"
+			"ÂÞÈøÀòæ«£º9		Ï£¶ù£º10		ÓÄÀ¼´÷¶û£º11		·û»ª£º12\n";
 	cout << endl;
 }
 
@@ -102,6 +104,14 @@ int main() {
 			cout << "\n			  Ä£ÄâÕ½¶·´ÎÊý" << n << endl;
 			cout << "\n		      ½ÇÉ«1µÄÊ¤³¡ÊýÎª" << winTimes1 << endl;
 			cout << "\n		      ½ÇÉ«2µÄÊ¤³¡ÊýÎª" << winTimes2 << endl;
+		}
+		else {
+			string winer;
+			if (winTimes1)
+				winer = role1->getName();
+			else
+				winer = role2->getName();
+			cout << winer << "»ñµÃÁËÊ¤Àû£¡" << endl;
 		}
 		//Ñ­»·½áÊø/¼ÌÐø
 		cout << "\n¼ÌÐøÇë°´y£¬·ñÔòÍË³ö\n";

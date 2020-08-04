@@ -8,7 +8,7 @@ class HurtPakge {
 	int eleDamage;			//元素伤害
 	int attackNum;			//造成次数
 	bool movable;			//冰冻标记
-	bool skillable;			//沉默标记
+	int skillable;			//沉默标记
 	int burnTimes;			//点燃
 	int burnHurt;			//点燃伤害
 	int accuracyAffected;	//命中率降低buff
@@ -107,7 +107,7 @@ public:
 	void setMovable(bool movable) {
 		this->movable = movable;
 	}
-	void setSkillable(bool skillable) {
+	void setSkillable(int skillable) {
 		this->skillable = skillable;
 	}
 	void setBurnTimes(int burnTimes) {
